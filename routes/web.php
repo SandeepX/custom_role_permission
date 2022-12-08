@@ -12,4 +12,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/roles', [PermissionController::class,'Permission']);
+Route::get('/test', [PermissionController::class,'Permission']);
