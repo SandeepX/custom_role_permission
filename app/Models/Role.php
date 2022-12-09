@@ -17,12 +17,12 @@ class Role extends Model
     public $timestamps = false;
 
 
-    public function permissions()
+    public function permissions(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Permission::class,'roles_permissions');
     }
 
-    public function users()
+    public function users(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(User::class,'users_roles');
     }

@@ -16,15 +16,13 @@ class Permission extends Model
 
     public $timestamps = false;
 
-    public function roles() {
-
+    public function roles(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
         return $this->belongsToMany(Role::class,'roles_permissions');
-
     }
 
-    public function users() {
-
+    public function users(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
         return $this->belongsToMany(User::class,'users_permissions');
-
     }
 }
