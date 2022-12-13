@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Video;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
 
 class PolymorphicRelationController extends Controller
@@ -25,6 +26,41 @@ class PolymorphicRelationController extends Controller
         foreach ($video->comments as $comment) {
             dd($comment);
         }
+    }
+
+    public function comments()
+    {
+        /**
+         *         select * from "comments" where
+                   (
+                            (
+                                "commentable_type" = 'App\Post' and exists (
+                                select * from "posts" where "comments"."commentable_id" = "posts"."id" and "title" = 'foo'
+                            )
+                        )
+                            or
+                          (
+                                "commentable_type" = 'App\Video' and exists (
+                                select * from "videos" where "comments"."commentable_id" = "videos"."id" and "title" = 'foo'
+                           )
+                        )
+                    )
+         */
+//        Comment::whereHasMorph('commentable', [Post::class, Video::class], function ($query, $type) {
+//            if ($type === Post::class) {
+//                // $query->
+//            }
+//            if ($type === Video::class) {
+//                // $query->
+//            }
+//        });
+
+
+       $comments =  Comment::whereHasMorph('commentable', [Post::class,Video::class], function ($query) {
+            $query->where('id', 1);
+        })->get();
+
+       dd($comments);
     }
 
     public function savePost()

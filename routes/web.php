@@ -15,6 +15,7 @@ Route::get('save-post', [\App\Http\Controllers\PolymorphicRelationController::cl
 Route::get('posts/{postId}', [\App\Http\Controllers\PolymorphicRelationController::class,'posts'])->name('posts.index');
 Route::get('save-video', [\App\Http\Controllers\PolymorphicRelationController::class,'saveVideo'])->name('video.save');
 Route::get('videos/{videoId}', [\App\Http\Controllers\PolymorphicRelationController::class,'video'])->name('videos.index');
+Route::get('comments', [\App\Http\Controllers\PolymorphicRelationController::class,'comments'])->name('comments.index');
 
 Auth::routes();
 
