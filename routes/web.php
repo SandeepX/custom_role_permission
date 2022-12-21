@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\PhoneAuthController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,3 +29,4 @@ Route::get('category/{categoryId}', [\App\Http\Controllers\ProductController::cl
 Route::get('category/product/{productId}', [\App\Http\Controllers\ProductController::class,'removeCategory'])->name('category.product.delete');
 Route::get('product/sync/{productId}', [\App\Http\Controllers\ProductController::class,'syncProductWithCategory'])->name('category.product.sync');
 
+Route::get('phone-auth', [PhoneAuthController::class, 'index']);
